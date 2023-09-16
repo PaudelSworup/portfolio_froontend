@@ -16,11 +16,11 @@ const About = () => {
         >
           ABOUT ME
         </h3>
-        <div className="sm:grid xl:grid-cols-2 gap-3 p-4">
+        <div className="sm:grid xl:grid-cols-2 gap-2 p-4">
           <div>
             <img
-              className="object-contain  flex grayscale-1"
-              src="https://eyemartnepal.com/wp-content/uploads/2019/05/Screenshot_20200303-215853__01.jpg"
+              className="object-contain   grayscale-1"
+              src="https://shorturl.at/clm37"
               alt=" "
             />
           </div>
