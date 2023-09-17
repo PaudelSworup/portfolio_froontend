@@ -16,16 +16,16 @@ const About = () => {
         >
           ABOUT ME
         </h3>
-        <div className="sm:grid xl:grid-cols-2 gap-2 p-4">
+        <div className="grid md:grid-cols-2 gap-4 p-4">
           <div>
             <img
-              className="object-contain   grayscale-1"
+              className="object-contain rounded-md w-full grayscale-1"
               src="https://shorturl.at/clm37"
               alt=" "
             />
           </div>
           <div
-            className={`tracking-widest  font-serif  sm:p-0 text-justify text-2xl ${
+            className={`tracking-widest  font-serif   sm:p-0 text-justify text-2xl ${
               darkmode && "text-gray-200"
             } `}
           >

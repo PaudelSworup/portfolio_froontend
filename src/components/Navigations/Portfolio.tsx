@@ -35,7 +35,8 @@ const Portfolio = () => {
         >
           PROJECTS
         </h2>
-        <div className="flex items-center justify-center flex-wrap gap-4">
+        {/* <div className="flex items-center justify-center flex-wrap gap-4"> */}
+        <div className="grid  md:grid-cols-2 sm:mx-14   gap-4 xl:flex  scrollbar-hide flex-wrap ">
           {data?.portfolio.map((data, i) => {
             return <Cards key={i} mydata={data} />;
           })}

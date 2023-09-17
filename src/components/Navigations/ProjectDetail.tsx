@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef } from "react";
 import Nav from "../Nav";
 import ThemeContext from "../ApplicationWrapper/ThemeContext";
 import { FaPlay, FaTimes } from "react-icons/fa";
@@ -8,12 +8,14 @@ import { getPortfolioById } from "../APIS/API";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../Modals/LoadingModal";
 import { API } from "../../config";
+import Error from "../Modals/ErrorModal";
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   let ID: string = id as string;
   const { darkmode } = useContext(ThemeContext);
   const [show, setShow] = useState<boolean>(false);
+  const [showFullText, setShowFullText] = useState<boolean>(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -31,6 +33,10 @@ const ProjectDetail = () => {
     }
   };
 
+  const toggleTextVisibility = (): void => {
+    setShowFullText(!showFullText);
+  };
+
   const { isLoading, error, data } = useQuery<portfolio>(
     ["getSingleData", ID],
     async () => {
@@ -41,6 +47,10 @@ const ProjectDetail = () => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (
@@ -54,7 +64,6 @@ const ProjectDetail = () => {
         >
           <img
             className="w-[100%] h-[100%] object-cover"
-            // src="https://rb.gy/da5us"
             src={data?.bg_image_url}
             alt=""
           />
@@ -84,7 +93,23 @@ const ProjectDetail = () => {
           </div>
         </div>
         <div className="leading-[1.4] text-justify tracking-widest max-w-[760px] mt-[15px] text-lg text-[rgb(249,249,249)]">
-          {data?.description}
+          <p>
+            {`${
+              showFullText
+                ? data?.description
+                : data?.description.slice(0, data?.description.length / 2.5)
+            }`}
+            <>
+              {data?.description && data.description.length > 100 && (
+                <button
+                  className="text-blue-700 underline mt-2"
+                  onClick={toggleTextVisibility}
+                >
+                  {showFullText ? "See Less" : " See More..."}
+                </button>
+              )}
+            </>
+          </p>
         </div>
         {data?.live_url && (
           <div className="leading-[1.4] hover:underline text-justify tracking-widest max-w-[760px] mt-[15px] text-lg text-[rgb(249,249,249)]">
