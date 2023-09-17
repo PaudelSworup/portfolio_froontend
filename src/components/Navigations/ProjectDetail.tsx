@@ -92,8 +92,8 @@ const ProjectDetail = () => {
             )}
           </div>
         </div>
-        <div className="leading-[1.4] text-justify tracking-widest max-w-[760px] mt-[15px] text-lg text-[rgb(249,249,249)]">
-          <p>
+        <div className="leading-[1.4] text-justify  max-w-[760px] mt-[15px] text-lg text-[rgb(249,249,249)]">
+          <p className="tracking-widest">
             {`${
               showFullText
                 ? data?.description
